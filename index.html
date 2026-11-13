@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>鮨と和食 人結</title>
+
+  <!-- 웹폰트 로드 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- 외부 라이브러리 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+
+  <!-- Style CSS 연결 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 고정 헤더 -->
+  <header class="page-header">
+    <div class="header-hamburger" onclick="openLobby()" title="Open Menu">
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- 1. 스플래시 오프닝 페이지 -->
+  <div id="start-page" onclick="enterLobbyFromStart()">
+    <svg class="thread-svg-overlay" viewBox="0 0 1000 600" preserveAspectRatio="none">
+      <path class="red-thread-path" d="M -100,300 C 200,80 350,520 500,300 C 650,80 800,520 1100,300" />
+      <path class="gold-thread-path" d="M -100,280 C 180,470 380,130 500,300 C 620,470 820,130 1100,320" />
+    </svg>
+
+    <div class="start-logo-box" onclick="event.stopPropagation(); goToStartPage();">
+      <img src="./SVG/キリコLogo.svg" alt="鮨と和食 人結 ロゴ">
+    </div>
+    <div class="start-title-vertical">鮨と和食 人結</div>
+    <div class="start-click-hint">CLICK TO ENTER</div>
+  </div>
+
+  <!-- 2. 슬라이드 메뉴 로비 화면 -->
+  <div id="lobby-screen" class="is-closed">
+    <header class="lobby-header">
+      <div class="lobby-logo-box" onclick="goToStartPage()" title="Start Page">
+        <img src="./SVG/キリコLogo.svg" alt="鮨と和食 人結 ロゴ">
+      </div>
+      <div class="lobby-top-right">
+        <div class="lang-select">
+          <a href="index-en.html">EN</a> / <span>JA</span>
+        </div>
+        <button class="close-btn" onclick="closeLobby()" title="Close">✕</button>
+      </div>
+    </header>
+
+    <nav class="lobby-menu-nav">
+      <a onclick="navigateToSection('omoi')" class="lobby-menu-item">想い</a>
+      <a onclick="navigateToSection('waza')" class="lobby-menu-item">技とおもてなし</a>
+      <a onclick="navigateToSection('menu')" class="lobby-menu-item">お品書き</a>
+      <a onclick="navigateToSection('info')" class="lobby-menu-item">店舗案内</a>
+      <a onclick="navigateToSection('reserve')" class="lobby-menu-item">ご予約</a>
+    </nav>
+
+    <footer class="lobby-footer">
+      <div class="lobby-sns">
+        <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div class="lobby-copyright">
+        © 2026 SUSHITOWASHOKU ENN. Privacy policy
+      </div>
+    </footer>
+  </div>
+
+  <!-- 3. 메인 콘텐츠 섹션 -->
+  <main>
+
+    <!-- [1] 想い (Omoi) Section -->
+    <section id="omoi" class="section-block is-active">
+      <div class="section-scroll-container">
+        <div class="hero-section">
+          <h1 class="hero-title-vertical reveal">想い</h1>
+        </div>
+
+        <div class="omoi-main-wrapper">
+          <div class="omoi-story-container reveal delay-1">
+            <h2 class="omoi-story-lead">「この地、この時でしか味わえない」<br>一期一会の美味を結ぶ、大人の隠れ家。</h2>
+          
+            <div class="omoi-story-body">
+              <p>
+                仙台・一番町の【 鮨と和食 人結（えん）】は、伝統的な江戸前寿司を軸に独自のスタイルで繰り広げる和食の店です。
+              </p>
+              <p>
+                素材の旨味を最大限に引き出す丁寧な仕込みを施した「熟成ネタ」と「新鮮なネタ」、
+                そして鮨に合うよう酸味とコクを追求した地元・宮城のササニシキによるシャリを絶妙に使い分けた握りをご提供いたします。
+              </p>
+              <p>
+                旬の小鉢や前菜、焼き物、そしてクライマックスを迎える鮨十貫へ——。<br>
+                提供の緩急と濃淡まで計算し尽くされたコースは、心満ちる食体験を叶えます。
+              </p>
+              <p>
+                静寂に包まれた和の客席設計で、会話をゆったりと楽しむ夜にふさわしい空間。<br>
+                一日四組のお客様のためだけに研ぎ澄まされた技と心で、特別なひとときをお届けいたします。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <nav class="footer-nav-vertical reveal">
+            <a onclick="navigateToSection('reserve')" class="footer-nav-item">ご予約</a>
+            <a onclick="navigateToSection('info')" class="footer-nav-item">店舗案内</a>
+            <a onclick="navigateToSection('menu')" class="footer-nav-item">お品書き</a>
+            <a onclick="navigateToSection('waza')" class="footer-nav-item">技とおもてなし</a>
+            <a onclick="navigateToSection('omoi')" class="footer-nav-item">想い</a>
+          </nav>
+
+          <div class="footer-bottom reveal">
+            <div class="footer-sns">
+              <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-copyright">
+              © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+            </div>
+            <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- [2] 技とおもてなし (Waza) Section -->
+    <section id="waza" class="section-block">
+      <div class="section-scroll-container">
+        <div class="hero-section">
+          <h1 class="hero-title-vertical reveal">技とおもてなし</h1>
+        </div>
+
+        <div class="waza-gallery-wrapper">
+          <div class="waza-gallery-container">
+
+            <div class="waza-prologue-box reveal delay-1">
+              <h2 class="prologue-lead">一日四組という、贅沢。</h2>
+              <p class="prologue-text">
+                人結が一日にお迎えするのは、わずか四組のお客様だけ。<br>
+                魚ごとに適した熟成と丁寧な仕込みを見極め、<br>
+                店主自らがテーブルの目の前に立ち、最良の瞬間に一貫を握る。<br>
+                妥協なき「技」を研ぎ澄まし、真心の「おもてなし」を行き届かせるための、人結の美学です。
+              </p>
+            </div>
+
+            <article class="gallery-article reveal delay-2">
+              <div class="gallery-img-box">
+                <img src="./img/enn5.jpg" alt="伝統の江戸前仕立てと熟成ネタ">
+              </div>
+              
+              <div class="gallery-meta-box">
+                <h2 class="gallery-title">
+                  江戸前 <ruby>技<rt>わざ</rt></ruby>仕立て
+                </h2>
+                
+                <p class="gallery-description">
+                  厳選された旬の鮮魚に丁寧な仕込みを施し、素材本来の旨味を最大限に引き出した特別な握り。<br>
+                  赤酢のコクが香る舎利と熟成の妙、四季折々の海の幸をお愉しみください。
+                </p>
+
+                <div class="gallery-spec-list">
+                  <div class="spec-row">
+                    <span class="spec-label">技法</span>
+                    <span class="spec-val">伝統の江戸前仕立て・熟成</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">舎利米</span>
+                    <span class="spec-val">宮城県産ササニシキ（赤酢仕立て）</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">握り</span>
+                    <span class="spec-val">コース内 鮨十貫</span>
+                  </div>
+                </div>
+
+                <div class="gallery-caption-note">
+                  ※仕入れ状況により、ネタの内容が日々異なります。
+                </div>
+              </div>
+            </article>
+
+            <article class="gallery-article reveal delay-3">
+              <div class="gallery-img-box">
+                <img src="./img/enn1.jpg" alt="テーブルの目の前で握るおもてなし">
+              </div>
+              
+              <div class="gallery-meta-box">
+                <h2 class="gallery-title">
+                  目の前で握る、至福の歓び
+                </h2>
+                
+                <p class="gallery-description">
+                  カウンターの枠を越え、店主自らがテーブル席へ出向き、<br>
+                  お客様の目の前で一貫ずつ心を込めて握る独自のスタイル。<br>
+                  職人の華麗な所作と握りたての香りを間近で味わう臨場感あふれる演出は、<br>
+                  一日四組のお客様のためだけに紡がれる特別なおもてなしです。
+                </p>
+
+                <div class="gallery-spec-list">
+                  <div class="spec-row">
+                    <span class="spec-label">演出</span>
+                    <span class="spec-val">テーブル席での実演握り（店主直演）</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">客席設計</span>
+                    <span class="spec-val">完全予約制・一日四組様限定</span>
+                  </div>
+                </div>
+
+                <div class="gallery-caption-note">
+                  ※ご会食や記念日など、特別なひとときに寄り添います。
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <nav class="footer-nav-vertical reveal">
+            <a onclick="navigateToSection('reserve')" class="footer-nav-item">ご予約</a>
+            <a onclick="navigateToSection('info')" class="footer-nav-item">店舗案内</a>
+            <a onclick="navigateToSection('menu')" class="footer-nav-item">お品書き</a>
+            <a onclick="navigateToSection('waza')" class="footer-nav-item">技とおもてなし</a>
+            <a onclick="navigateToSection('omoi')" class="footer-nav-item">想い</a>
+          </nav>
+
+          <div class="footer-bottom reveal">
+            <div class="footer-sns">
+              <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-copyright">
+              © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+            </div>
+            <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- [3] お品書き (Menu) Section -->
+    <section id="menu" class="section-block">
+      <div class="section-scroll-container">
+        <div class="hero-section">
+          <h1 class="hero-title-vertical reveal">お品書き</h1>
+        </div>
+
+        <div class="menu-main-wrapper">
+          <div class="menu-container">
+            
+            <div class="menu-section-header reveal">
+              <div class="menu-section-sub-title">おまかせコース</div>
+              <h2 class="menu-section-main-title">厳選した旬の味覚を愉しむ</h2>
+            </div>
+
+            <div class="course-list">
+              <div class="course-item reveal delay-1">
+                <div class="course-main-row">
+                  <h3 class="course-name">おまかせ「<ruby>和<rt>なごみ</rt></ruby>」コース</h3>
+                  <div class="course-price">¥11,000</div>
+                </div>
+                <div class="course-desc-box">
+                  先付・前菜・季節の逸品・江戸前仕立て鮨十貫・留椀・甘味<br>
+                  <span class="course-sub-note">※伝統の江戸前鮨十貫を中心に、旬の食材を使ったお料理をバランスよくお愉しみいただける基本のコースです。</span>
+                </div>
+              </div>
+
+              <div class="course-item reveal delay-2">
+                <div class="course-main-row">
+                  <h3 class="course-name">おまかせ「<ruby>結<rt>むすび</rt></ruby>」コース</h3>
+                  <div class="course-price">¥22,000</div>
+                </div>
+                <div class="course-desc-box">
+                  先付・前菜・お造り・季節の逸品（焼き物・肉料理など）・江戸前仕立て極み鮨十貫・留椀・甘味<br>
+                  <span class="course-sub-note">※旬の鮮魚のお造りや厳選食材の逸品料理を織り交ぜ、人結の技と季節の味覚を存分に味わう代表コースです。</span>
+                </div>
+              </div>
+
+              <div class="course-item reveal delay-3">
+                <div class="course-main-row">
+                  <h3 class="course-name">おまかせ「<ruby>極<rt>きわみ</rt></ruby>」コース</h3>
+                  <div class="course-price">¥33,000</div>
+                </div>
+                <div class="course-desc-box">
+                  先付・雲丹と牡丹海老の前菜・キャビアの一皿・伊勢海老の焼き物・仙台牛料理・江戸前仕立て極上鮨十二貫・甘味<br>
+                  <span class="course-sub-note">※最高級食材を惜しみなく使用し、鮨十二貫へと昇華させた特別な日のための最上位コースです。（3日前迄の要予約）</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="course-notice-box reveal">
+              ※ 表示価格は全て税込価格でございます。<br>
+              ※ 季節やその日の仕入れ状況により、お料理の内容が日々異なります。<br>
+              ※ アレルギーやお苦手な食材がございましたら、ご予約時にお申し付けください。
+            </div>
+
+            <div class="external-reserve-box reveal">
+              <div class="ext-box-title">【季節限定コース・厳選銘酒について】</div>
+              <div class="ext-box-desc">
+                四季折々の限定コースや最新の仕入れ状況は、公式Instagramにて随時発信しております。<br>
+                また、厳選された地酒・ワインなどのお飲み物はお席にて当日ご案内いたします。
+              </div>
+              <div class="ext-btn-group">
+                <a href="https://www.instagram.com/enn.sendai/" target="_blank" class="ext-btn-text">
+                  <span>公式Instagramで最新情報を見る</span>
+                  <span class="btn-arrow">→</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <nav class="footer-nav-vertical reveal">
+            <a onclick="navigateToSection('reserve')" class="footer-nav-item">ご予約</a>
+            <a onclick="navigateToSection('info')" class="footer-nav-item">店舗案内</a>
+            <a onclick="navigateToSection('menu')" class="footer-nav-item">お品書き</a>
+            <a onclick="navigateToSection('waza')" class="footer-nav-item">技とおもてなし</a>
+            <a onclick="navigateToSection('omoi')" class="footer-nav-item">想い</a>
+          </nav>
+
+          <div class="footer-bottom reveal">
+            <div class="footer-sns">
+              <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-copyright">
+              © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+            </div>
+            <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- [4] 店舗案内 (Info) Section -->
+    <section id="info" class="section-block">
+      <div class="section-scroll-container">
+        <div class="hero-section">
+          <h1 class="hero-title-vertical reveal">店舗案内</h1>
+        </div>
+
+        <div class="info-main-wrapper">
+          <div class="info-container">
+            
+            <div class="info-section-header reveal">
+              <div class="info-section-sub-title">店舗案内</div>
+              <h2 class="info-section-main-title">店舗情報</h2>
+            </div>
+
+            <div class="info-grid reveal delay-1">
+              
+              <div class="info-left-panel">
+                <div class="tel-card">
+                  <div class="tel-sub">お電話での御予約・お問い合わせ</div>
+                  <a href="tel:0222658388" class="tel-number">022-265-8388</a>
+                  <div class="tel-hours">営業時間 17:30 〜 23:00</div>
+                </div>
+
+                <div class="building-card">
+                  <div class="building-card-content">
+                    当店は<br>
+                    <span class="nobreak-line"><strong>「DK一番町ビル 1F」</strong> です</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-table">
+                
+                <div class="info-row">
+                  <div class="info-label">店内</div>
+                  <div class="info-value">鮨と和食 人結（えん）</div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">住所</div>
+                  <div class="info-value">
+                    〒980-0811<br>
+                    宮城県仙台市青葉区一番町2-7-9 DK一番町ビル 1F
+                  </div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">アクセス</div>
+                  <div class="info-value">
+                    仙台市営地下鉄東西線「青葉通一番町駅」南1口より徒歩3分<br>
+                    JR仙石線「あおば通駅」徒歩9分
+                  </div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">営業時間</div>
+                  <div class="info-value">17:30 〜 23:00</div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">定休日</div>
+                  <div class="info-value">月曜日</div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">駐車場</div>
+                  <div class="info-value">
+                    無し
+                    <div class="info-note">※近隣にコインパーキングがございます。</div>
+                  </div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">貸切</div>
+                  <div class="info-value">
+                    可
+                    <div class="info-note">※詳しくは店舗へご相談ください / 1日4組限定</div>
+                  </div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">カード</div>
+                  <div class="info-value">可（VISA, Master, JCB, AMEX）</div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">QR決済</div>
+                  <div class="info-value">不可</div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <nav class="footer-nav-vertical reveal">
+            <a onclick="navigateToSection('reserve')" class="footer-nav-item">ご予約</a>
+            <a onclick="navigateToSection('info')" class="footer-nav-item">店舗案内</a>
+            <a onclick="navigateToSection('menu')" class="footer-nav-item">お品書き</a>
+            <a onclick="navigateToSection('waza')" class="footer-nav-item">技とおもてなし</a>
+            <a onclick="navigateToSection('omoi')" class="footer-nav-item">想い</a>
+          </nav>
+
+          <div class="footer-bottom reveal">
+            <div class="footer-sns">
+              <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-copyright">
+              © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+            </div>
+            <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- [5] ご予約・お問い合わせ (Reserve) Section -->
+    <section id="reserve" class="section-block">
+      <div class="section-scroll-container">
+        <div class="hero-section">
+          <h1 class="hero-title-vertical reveal">ご予約</h1>
+        </div>
+
+        <div class="reserve-main-wrapper">
+          <div class="reserve-container">
+            
+            <div class="reserve-section-header reveal">
+              <div class="reserve-section-sub-title">ご予約</div>
+              <h2 class="reserve-section-main-title">ご予約・お問い合わせ</h2>
+            </div>
+
+            <div class="external-reserve-box reveal delay-1">
+              <div class="ext-box-title">【提携予約サイトをご利用の方】</div>
+              <div class="ext-box-desc">
+                ポイントのご利用・即時確定をご希望のお客様は、<br>
+                下記提携予約サイトより空席確認・ご予約をお願いいたします。
+              </div>
+              <div class="ext-btn-group">
+                <a href="https://hitosara.com/0031119365/" class="ext-btn" target="_blank">ヒトサラで予約 ➔</a>
+                <a href="https://restaurant.ikyu.com/149238" class="ext-btn" target="_blank">一休レストランで予約 ➔</a>
+              </div>
+            </div>
+
+            <div class="divider-row reveal">
+              <span class="divider-text">または WEB直接お問い合わせ</span>
+            </div>
+
+            <form class="contact-form reveal delay-1" onsubmit="event.preventDefault(); alert('お問い合わせを受け付けました。');">
+              
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">お名前</label>
+                  <span class="required-badge">必須</span>
+                </div>
+                <input type="text" class="form-input" placeholder="例）サンプル 太郎" required>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">お電話番号</label>
+                  <span class="required-badge">必須</span>
+                </div>
+                <input type="tel" class="form-input" placeholder="090-xxxx-xxxx" required>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">メールアドレス</label>
+                  <span class="required-badge">必須</span>
+                </div>
+                <input type="email" class="form-input" placeholder="xxxx@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">ご希望のコース</label>
+                  <span class="required-badge">必須</span>
+                </div>
+                <select class="form-input form-select" required>
+                  <option value="" disabled selected>コースをお選びください</option>
+                  <option value="course_11000">おまかせ「和（なごみ）」コース（¥11,000）</option>
+                  <option value="course_22000">おまかせ「結（むすび）」コース（¥22,000）</option>
+                  <option value="course_33000">おまかせ「極（きわみ）」コース（¥33,000）</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">予約日</label>
+                  <span class="required-badge">必須</span>
+                </div>
+                <input type="text" id="customDatePicker" class="form-input date-input-large" placeholder="日付を選択してください" readonly required>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">人数</label>
+                  <span class="required-badge">必須</span>
+                </div>
+                <div class="click-option-grid-7">
+                  <div class="click-option-item">
+                    <input type="radio" id="p2" name="people_count" value="2名" checked required>
+                    <label for="p2" class="click-option-label">2名</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p3" name="people_count" value="3名">
+                    <label for="p3" class="click-option-label">3名</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p4" name="people_count" value="4名">
+                    <label for="p4" class="click-option-label">4名</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p5" name="people_count" value="5名">
+                    <label for="p5" class="click-option-label">5名</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p6" name="people_count" value="6名">
+                    <label for="p6" class="click-option-label">6名</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p7" name="people_count" value="7名">
+                    <label for="p7" class="click-option-label">7名</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p8" name="people_count" value="8名">
+                    <label for="p8" class="click-option-label">8名</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">予約時間</label>
+                  <span class="required-badge">必須</span>
+                </div>
+                <div class="click-option-grid-7">
+                  <div class="click-option-item">
+                    <input type="radio" id="t1" name="reserve_time" value="17:30" required>
+                    <label for="t1" class="click-option-label">17:30</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t2" name="reserve_time" value="18:00">
+                    <label for="t2" class="click-option-label">18:00</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t3" name="reserve_time" value="18:30">
+                    <label for="t3" class="click-option-label">18:30</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t4" name="reserve_time" value="19:00">
+                    <label for="t4" class="click-option-label">19:00</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t5" name="reserve_time" value="19:30">
+                    <label for="t5" class="click-option-label">19:30</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t6" name="reserve_time" value="20:00">
+                    <label for="t6" class="click-option-label">20:00</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t7" name="reserve_time" value="20:30">
+                    <label for="t7" class="click-option-label">20:30</label>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="form-submit-btn">送信する</button>
+
+            </form>
+
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <nav class="footer-nav-vertical reveal">
+            <a onclick="navigateToSection('reserve')" class="footer-nav-item">ご予約</a>
+            <a onclick="navigateToSection('info')" class="footer-nav-item">店舗案内</a>
+            <a onclick="navigateToSection('menu')" class="footer-nav-item">お品書き</a>
+            <a onclick="navigateToSection('waza')" class="footer-nav-item">技とおもてなし</a>
+            <a onclick="navigateToSection('omoi')" class="footer-nav-item">想い</a>
+          </nav>
+
+          <div class="footer-bottom reveal">
+            <div class="footer-sns">
+              <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-copyright">
+              © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+            </div>
+            <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

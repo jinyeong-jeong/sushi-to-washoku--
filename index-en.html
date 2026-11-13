@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sushi & Washoku Enn</title>
+
+  <!-- Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Fixed Header -->
+  <header class="page-header">
+    <div class="header-hamburger" onclick="openLobby()" title="Open Menu">
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- 1. Splash Opening Page -->
+  <div id="start-page" onclick="enterLobbyFromStart()">
+    <svg class="thread-svg-overlay" viewBox="0 0 1000 600" preserveAspectRatio="none">
+      <path class="red-thread-path" d="M -100,300 C 200,80 350,520 500,300 C 650,80 800,520 1100,300" />
+      <path class="gold-thread-path" d="M -100,280 C 180,470 380,130 500,300 C 620,470 820,130 1100,320" />
+    </svg>
+
+    <div class="start-logo-box" onclick="event.stopPropagation(); goToStartPage();">
+      <img src="./SVG/キリコLogo.svg" alt="Sushi & Washoku Enn Logo">
+    </div>
+    <div class="start-title-vertical">Sushi & Washoku Enn</div>
+    <div class="start-click-hint">CLICK TO ENTER</div>
+  </div>
+
+  <!-- 2. Slide Menu Lobby Screen -->
+  <div id="lobby-screen" class="is-closed">
+    <header class="lobby-header">
+      <div class="lobby-logo-box" onclick="goToStartPage()" title="Start Page">
+        <img src="./SVG/キリコLogo.svg" alt="Sushi & Washoku Enn Logo">
+      </div>
+      <div class="lobby-top-right">
+        <div class="lang-select">
+          <span>EN</span> / <a href="index.html">JA</a>
+        </div>
+        <button class="close-btn" onclick="closeLobby()" title="Close">✕</button>
+      </div>
+    </header>
+
+    <nav class="lobby-menu-nav">
+      <a onclick="navigateToSection('omoi')" class="lobby-menu-item">Philosophy</a>
+      <a onclick="navigateToSection('waza')" class="lobby-menu-item">Craftsmanship</a>
+      <a onclick="navigateToSection('menu')" class="lobby-menu-item">Menu</a>
+      <a onclick="navigateToSection('info')" class="lobby-menu-item">Information</a>
+      <a onclick="navigateToSection('reserve')" class="lobby-menu-item">Reservation</a>
+    </nav>
+
+    <footer class="lobby-footer">
+      <div class="lobby-sns">
+        <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div class="lobby-copyright">
+        © 2026 SUSHITOWASHOKU ENN. Privacy policy
+      </div>
+    </footer>
+  </div>
+
+  <!-- 3. Main Content Container -->
+  <main>
+
+    <!-- [1] Philosophy (Omoi) Section -->
+    <section id="omoi" class="section-block is-active">
+      <div class="section-scroll-container">
+        <div class="hero-section">
+          <h1 class="hero-title-vertical reveal">Philosophy</h1>
+        </div>
+
+        <div class="omoi-main-wrapper">
+          <div class="omoi-story-container reveal delay-1">
+            <h2 class="omoi-story-lead">"Flavors found only here, in this moment."<br>An intimate hideaway uniting once-in-a-lifetime culinary encounters.</h2>
+          
+            <div class="omoi-story-body">
+              <p>
+                Located in Ichibancho, Sendai, Sushi & Washoku Enn offers an original style of Japanese cuisine rooted in traditional Edomae sushi.
+              </p>
+              <p>
+                We carefully pair both aged and fresh seafood—meticulously prepared to draw out peak umami—with shari crafted from locally grown Miyagi Sasanishiki rice, balanced in acidity and richness to complement every piece.
+              </p>
+              <p>
+                From seasonal small plates, appetizers, and grilled delicacies to the climax of ten signature nigiri pieces—each course is orchestrated in rhythm and depth for a deeply fulfilling dining experience.
+              </p>
+              <p>
+                Designed in serene Japanese tranquility for unhurried conversation, we dedicate our honed skills and heartfelt hospitality exclusively to just four parties each evening.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <nav class="footer-nav-vertical reveal">
+            <a onclick="navigateToSection('reserve')" class="footer-nav-item">Reservation</a>
+            <a onclick="navigateToSection('info')" class="footer-nav-item">Information</a>
+            <a onclick="navigateToSection('menu')" class="footer-nav-item">Menu</a>
+            <a onclick="navigateToSection('waza')" class="footer-nav-item">Craftsmanship</a>
+            <a onclick="navigateToSection('omoi')" class="footer-nav-item">Philosophy</a>
+          </nav>
+
+          <div class="footer-bottom reveal">
+            <div class="footer-sns">
+              <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-copyright">
+              © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+            </div>
+            <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- [2] Craftsmanship & Hospitality (Waza) Section -->
+    <section id="waza" class="section-block">
+      <div class="section-scroll-container">
+        <div class="hero-section">
+          <h1 class="hero-title-vertical reveal">Craftsmanship</h1>
+        </div>
+
+        <div class="waza-gallery-wrapper">
+          <div class="waza-gallery-container">
+
+            <div class="waza-prologue-box reveal delay-1">
+              <h2 class="prologue-lead">The Luxury of Only Four Parties a Day.</h2>
+              <p class="prologue-text">
+                At Enn, we welcome no more than four parties each evening.<br>
+                Discerning the ideal aging and preparation for every fish,<br>
+                our head chef personally steps up to your table to craft each piece at its peak moment.<br>
+                This is our aesthetic—sharpening uncompromising technique to deliver truly attentive hospitality.
+              </p>
+            </div>
+
+            <article class="gallery-article reveal delay-2">
+              <div class="gallery-img-box">
+                <img src="./img/enn5.jpg" alt="Traditional Edomae Preparation and Aged Seafood">
+              </div>
+              
+              <div class="gallery-meta-box">
+                <h2 class="gallery-title">
+                  Traditional Edomae Preparation
+                </h2>
+                
+                <p class="gallery-description">
+                  Carefully selected seasonal fish undergo meticulous Edomae preparation to unlock their purest natural umami.<br>
+                  Savor the harmony of aged delicacies, red-vinegar seasoned shari, and the finest bounty of the four seasons.
+                </p>
+
+                <div class="gallery-spec-list">
+                  <div class="spec-row">
+                    <span class="spec-label">Technique</span>
+                    <span class="spec-val">Traditional Edomae Curing & Aging</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Shari Rice</span>
+                    <span class="spec-val">Miyagi Sasanishiki (Red Vinegar Blend)</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Nigiri</span>
+                    <span class="spec-val">10 Signature Pieces in Course</span>
+                  </div>
+                </div>
+
+                <div class="gallery-caption-note">
+                  * Selection of fish varies daily depending on market availability.
+                </div>
+              </div>
+            </article>
+
+            <article class="gallery-article reveal delay-3">
+              <div class="gallery-img-box">
+                <img src="./img/enn1.jpg" alt="Live Table-side Nigiri Performance">
+              </div>
+              
+              <div class="gallery-meta-box">
+                <h2 class="gallery-title">
+                  Crafted Right Before Your Eyes
+                </h2>
+                
+                <p class="gallery-description">
+                  Stepping beyond the traditional counter, our chef comes directly to your table<br>
+                  to hand-press each piece of sushi right before you.<br>
+                  Experiencing the artisan's graceful movements and fresh aroma up close<br>
+                  creates an intimate performance reserved solely for four parties a night.
+                </p>
+
+                <div class="gallery-spec-list">
+                  <div class="spec-row">
+                    <span class="spec-label">Experience</span>
+                    <span class="spec-val">Live Table-side Nigiri by Head Chef</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Seating</span>
+                    <span class="spec-val">Reservation Only · Limited to 4 Parties/Day</span>
+                  </div>
+                </div>
+
+                <div class="gallery-caption-note">
+                  * Tailored for business dinners, anniversaries, and special occasions.
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <nav class="footer-nav-vertical reveal">
+            <a onclick="navigateToSection('reserve')" class="footer-nav-item">Reservation</a>
+            <a onclick="navigateToSection('info')" class="footer-nav-item">Information</a>
+            <a onclick="navigateToSection('menu')" class="footer-nav-item">Menu</a>
+            <a onclick="navigateToSection('waza')" class="footer-nav-item">Craftsmanship</a>
+            <a onclick="navigateToSection('omoi')" class="footer-nav-item">Philosophy</a>
+          </nav>
+
+          <div class="footer-bottom reveal">
+            <div class="footer-sns">
+              <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-copyright">
+              © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+            </div>
+            <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- [3] Menu Section -->
+    <section id="menu" class="section-block">
+      <div class="section-scroll-container">
+        <div class="hero-section">
+          <h1 class="hero-title-vertical reveal">Menu</h1>
+        </div>
+
+        <div class="menu-main-wrapper">
+          <div class="menu-container">
+            
+            <div class="menu-section-header reveal">
+              <div class="menu-section-sub-title">Omakase Course</div>
+              <h2 class="menu-section-main-title">Savor Curated Seasonal Delicacies</h2>
+            </div>
+
+            <div class="course-list">
+              <div class="course-item reveal delay-1">
+                <div class="course-main-row">
+                  <h3 class="course-name">Omakase "Nagomi" Course</h3>
+                  <div class="course-price">¥11,000</div>
+                </div>
+                <div class="course-desc-box">
+                  Starter · Seasonal Appetizers · Seasonal Delicacy · 10 Edomae Sushi Pieces · Soup · Dessert<br>
+                  <span class="course-sub-note">* Our signature introductory course centered around 10 traditional Edomae nigiri pieces and balanced seasonal dishes.</span>
+                </div>
+              </div>
+
+              <div class="course-item reveal delay-2">
+                <div class="course-main-row">
+                  <h3 class="course-name">Omakase "Musubi" Course</h3>
+                  <div class="course-price">¥22,000</div>
+                </div>
+                <div class="course-desc-box">
+                  Starter · Seasonal Appetizers · Sashimi · Seasonal Specialties (Grilled & Meat Dishes) · 10 Premium Edomae Sushi Pieces · Soup · Dessert<br>
+                  <span class="course-sub-note">* Our flagship course weaving together seasonal sashimi, curated hot dishes, and refined Edomae craftsmanship.</span>
+                </div>
+              </div>
+
+              <div class="course-item reveal delay-3">
+                <div class="course-main-row">
+                  <h3 class="course-name">Omakase "Kiwami" Course</h3>
+                  <div class="course-price">¥33,000</div>
+                </div>
+                <div class="course-desc-box">
+                  Starter · Sea Urchin & Botan Shrimp Appetizer · Caviar Dish · Grilled Ise Lobster · Sendai Beef · 12 Ultimate Edomae Sushi Pieces · Dessert<br>
+                  <span class="course-sub-note">* Our pinnacle course crafted with the finest luxury ingredients and 12 supreme nigiri pieces. (Reservation required 3 days in advance)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="course-notice-box reveal">
+              * All prices include tax.<br>
+              * Course contents vary daily according to the season and freshest market catch.<br>
+              * Please inform us of any food allergies or dietary restrictions when booking.
+            </div>
+
+            <div class="external-reserve-box reveal">
+              <div class="ext-box-title">[ Seasonal Limited Courses & Curated Sake ]</div>
+              <div class="ext-box-desc">
+                We share updates on seasonal courses and daily market arrivals on our official Instagram.<br>
+                Selected local Japanese sakes and fine wines are presented at your table on the day of your visit.
+              </div>
+              <div class="ext-btn-group">
+                <a href="https://www.instagram.com/enn.sendai/" target="_blank" class="ext-btn-text">
+                  <span>View Latest Updates on Instagram</span>
+                  <span class="btn-arrow">→</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <nav class="footer-nav-vertical reveal">
+            <a onclick="navigateToSection('reserve')" class="footer-nav-item">Reservation</a>
+            <a onclick="navigateToSection('info')" class="footer-nav-item">Information</a>
+            <a onclick="navigateToSection('menu')" class="footer-nav-item">Menu</a>
+            <a onclick="navigateToSection('waza')" class="footer-nav-item">Craftsmanship</a>
+            <a onclick="navigateToSection('omoi')" class="footer-nav-item">Philosophy</a>
+          </nav>
+
+          <div class="footer-bottom reveal">
+            <div class="footer-sns">
+              <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-copyright">
+              © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+            </div>
+            <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- [4] Information (Info) Section -->
+    <section id="info" class="section-block">
+      <div class="section-scroll-container">
+        <div class="hero-section">
+          <h1 class="hero-title-vertical reveal">Information</h1>
+        </div>
+
+        <div class="info-main-wrapper">
+          <div class="info-container">
+            
+            <div class="info-section-header reveal">
+              <div class="info-section-sub-title">Information</div>
+              <h2 class="info-section-main-title">Restaurant Details</h2>
+            </div>
+
+            <div class="info-grid reveal delay-1">
+              
+              <div class="info-left-panel">
+                <div class="tel-card">
+                  <div class="tel-sub">Phone Reservations & Inquiries</div>
+                  <a href="tel:0222658388" class="tel-number">022-265-8388</a>
+                  <div class="tel-hours">Hours: 17:30 – 23:00</div>
+                </div>
+
+                <div class="building-card">
+                  <div class="building-card-content">
+                    Located at<br>
+                    <span class="nobreak-line"><strong>"DK Ichibancho Bldg. 1F"</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-table">
+                
+                <div class="info-row">
+                  <div class="info-label">Name</div>
+                  <div class="info-value">Sushi & Washoku Enn</div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">Address</div>
+                  <div class="info-value">
+                    〒980-0811<br>
+                    1F DK Ichibancho Bldg., 2-7-9 Ichibancho, Aoba-ku, Sendai, Miyagi
+                  </div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">Access</div>
+                  <div class="info-value">
+                    3-min walk from Aobadori-Ichibancho Station (South Exit 1, Tozai Line)<br>
+                    9-min walk from JR Senseki Line Aoba-dori Station
+                  </div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">Hours</div>
+                  <div class="info-value">17:30 – 23:00</div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">Closed</div>
+                  <div class="info-value">Mondays</div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">Parking</div>
+                  <div class="info-value">
+                    None
+                    <div class="info-note">* Coin parking lots are available nearby.</div>
+                  </div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">Private</div>
+                  <div class="info-value">
+                    Available
+                    <div class="info-note">* Please inquire directly / Limited to 4 parties per day</div>
+                  </div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">Card</div>
+                  <div class="info-value">Accepted (VISA, Master, JCB, AMEX)</div>
+                </div>
+
+                <div class="info-row">
+                  <div class="info-label">QR Pay</div>
+                  <div class="info-value">Not Accepted</div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <nav class="footer-nav-vertical reveal">
+            <a onclick="navigateToSection('reserve')" class="footer-nav-item">Reservation</a>
+            <a onclick="navigateToSection('info')" class="footer-nav-item">Information</a>
+            <a onclick="navigateToSection('menu')" class="footer-nav-item">Menu</a>
+            <a onclick="navigateToSection('waza')" class="footer-nav-item">Craftsmanship</a>
+            <a onclick="navigateToSection('omoi')" class="footer-nav-item">Philosophy</a>
+          </nav>
+
+          <div class="footer-bottom reveal">
+            <div class="footer-sns">
+              <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-copyright">
+              © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+            </div>
+            <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- [5] Reservation & Contact Section -->
+    <section id="reserve" class="section-block">
+      <div class="section-scroll-container">
+        <div class="hero-section">
+          <h1 class="hero-title-vertical reveal">Reservation</h1>
+        </div>
+
+        <div class="reserve-main-wrapper">
+          <div class="reserve-container">
+            
+            <div class="reserve-section-header reveal">
+              <div class="reserve-section-sub-title">Reservation</div>
+              <h2 class="reserve-section-main-title">Reservations & Inquiries</h2>
+            </div>
+
+            <div class="external-reserve-box reveal delay-1">
+              <div class="ext-box-title">[ Partner Reservation Sites ]</div>
+              <div class="ext-box-desc">
+                For instant confirmation or to redeem membership points,<br>
+                please check availability and book through our partner platforms below.
+              </div>
+              <div class="ext-btn-group">
+                <a href="https://hitosara.com/0031119365/" class="ext-btn" target="_blank">Book via Hitosara ➔</a>
+                <a href="https://restaurant.ikyu.com/149238" class="ext-btn" target="_blank">Book via Ikyu Restaurant ➔</a>
+              </div>
+            </div>
+
+            <div class="divider-row reveal">
+              <span class="divider-text">OR DIRECT WEB INQUIRY</span>
+            </div>
+
+            <form class="contact-form reveal delay-1" onsubmit="event.preventDefault(); alert('Thank you. Your inquiry has been received.');">
+              
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">Full Name</label>
+                  <span class="required-badge">Required</span>
+                </div>
+                <input type="text" class="form-input" placeholder="e.g. John Smith" required>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">Phone Number</label>
+                  <span class="required-badge">Required</span>
+                </div>
+                <input type="tel" class="form-input" placeholder="090-xxxx-xxxx" required>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">Email Address</label>
+                  <span class="required-badge">Required</span>
+                </div>
+                <input type="email" class="form-input" placeholder="xxxx@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">Preferred Course</label>
+                  <span class="required-badge">Required</span>
+                </div>
+                <select class="form-input form-select" required>
+                  <option value="" disabled selected>Please select a course</option>
+                  <option value="course_11000">Omakase "Nagomi" Course (¥11,000)</option>
+                  <option value="course_22000">Omakase "Musubi" Course (¥22,000)</option>
+                  <option value="course_33000">Omakase "Kiwami" Course (¥33,000)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">Reservation Date</label>
+                  <span class="required-badge">Required</span>
+                </div>
+                <input type="text" id="customDatePicker" class="form-input date-input-large" placeholder="Select a date" readonly required>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">Number of Guests</label>
+                  <span class="required-badge">Required</span>
+                </div>
+                <div class="click-option-grid-7">
+                  <div class="click-option-item">
+                    <input type="radio" id="p2" name="people_count" value="2 Guests" checked required>
+                    <label for="p2" class="click-option-label">2</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p3" name="people_count" value="3 Guests">
+                    <label for="p3" class="click-option-label">3</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p4" name="people_count" value="4 Guests">
+                    <label for="p4" class="click-option-label">4</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p5" name="people_count" value="5 Guests">
+                    <label for="p5" class="click-option-label">5</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p6" name="people_count" value="6 Guests">
+                    <label for="p6" class="click-option-label">6</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p7" name="people_count" value="7 Guests">
+                    <label for="p7" class="click-option-label">7</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="p8" name="people_count" value="8 Guests">
+                    <label for="p8" class="click-option-label">8</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="form-label-row">
+                  <label class="form-label">Reservation Time</label>
+                  <span class="required-badge">Required</span>
+                </div>
+                <div class="click-option-grid-7">
+                  <div class="click-option-item">
+                    <input type="radio" id="t1" name="reserve_time" value="17:30" required>
+                    <label for="t1" class="click-option-label">17:30</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t2" name="reserve_time" value="18:00">
+                    <label for="t2" class="click-option-label">18:00</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t3" name="reserve_time" value="18:30">
+                    <label for="t3" class="click-option-label">18:30</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t4" name="reserve_time" value="19:00">
+                    <label for="t4" class="click-option-label">19:00</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t5" name="reserve_time" value="19:30">
+                    <label for="t5" class="click-option-label">19:30</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t6" name="reserve_time" value="20:00">
+                    <label for="t6" class="click-option-label">20:00</label>
+                  </div>
+                  <div class="click-option-item">
+                    <input type="radio" id="t7" name="reserve_time" value="20:30">
+                    <label for="t7" class="click-option-label">20:30</label>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="form-submit-btn">SEND INQUIRY</button>
+
+            </form>
+
+          </div>
+        </div>
+
+        <footer class="site-footer">
+          <nav class="footer-nav-vertical reveal">
+            <a onclick="navigateToSection('reserve')" class="footer-nav-item">Reservation</a>
+            <a onclick="navigateToSection('info')" class="footer-nav-item">Information</a>
+            <a onclick="navigateToSection('menu')" class="footer-nav-item">Menu</a>
+            <a onclick="navigateToSection('waza')" class="footer-nav-item">Craftsmanship</a>
+            <a onclick="navigateToSection('omoi')" class="footer-nav-item">Philosophy</a>
+          </nav>
+
+          <div class="footer-bottom reveal">
+            <div class="footer-sns">
+              <a href="https://www.facebook.com/enn.sendai" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/enn.sendai/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-copyright">
+              © 2026 SUSHITOWASHOKU ENN. All rights reserved.
+            </div>
+            <a href="#" class="footer-privacy">Privacy Policy Powered by S2</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
